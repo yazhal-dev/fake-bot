@@ -1,1 +1,1 @@
-Commande ECHO activ‚e.
+worker: ruby fake.rb
