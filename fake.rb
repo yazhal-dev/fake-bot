@@ -62,7 +62,7 @@ end
 
 bot.command(:roles) do |event|
 
-break unless event.user.role?(724748530920456202) || event.user.role?(697376461283393608)
+break unless event.user.role?(728054774049800264) || event.user.role?(697376461283393608)
 
 @messages = Hash.new
 
@@ -305,7 +305,7 @@ bot.command(:pings) do |event|
 
 @pings = Hash.new
 
-break unless event.user.role?(724748530920456202) || event.user.role?(697376461283393608)
+break unless event.user.role?(728054774049800264) || event.user.role?(697376461283393608)
 sleep(2)
 welcome = event.channel.send_embed do |embed|
 			embed.description = "**welcomers**\nreact with <a:ab1:725213753905250444> to get pinged when a new person joins the server"
@@ -806,7 +806,7 @@ end
 
 bot.command(:info) do |event|
 
-break unless event.user.role?(724748530920456202) || event.user.role?(697376461283393608)
+break unless event.user.role?(728054774049800264) || event.user.role?(697376461283393608)
 sleep(2)
 event.channel.send_embed do |embed|
       embed.colour = 0, 0, 0
@@ -943,7 +943,7 @@ end
 
 bot.command(:emojis) do |event|
 
-break unless event.user.role?(724748530920456202)
+break unless event.user.role?(728054774049800264)
 
 emojis = event.server.emoji
 
