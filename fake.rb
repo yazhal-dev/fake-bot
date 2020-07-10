@@ -286,8 +286,8 @@ event.channel.send_embed do |embed|
 end
 
 
-
-File.write("settings.json", @messages.to_json)
+result = settings.merge(@messages)
+File.write("settings.json", result.to_json)
 json = File.read('settings.json')
 settings = JSON.parse(json)
 return nil
