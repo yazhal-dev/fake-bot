@@ -858,14 +858,14 @@ end
 bot.reaction_add(emoji: 720558287942320248) do |event|
 	if event.message.id == settings['VERIFY_ID']
 		sleep(2)
-		event.user.add_role(723751350076440578)
+		event.user.remove_role(723751350076440578)
 	end
 end
 
 bot.reaction_remove(emoji: 720558287942320248) do |event|
 	if event.message.id == settings['VERIFY_ID']
 		sleep(2)
-		event.user.remove_role(723751350076440578)
+		event.user.add_role(723751350076440578)
 	end
 end
 
