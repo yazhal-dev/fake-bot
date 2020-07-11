@@ -355,6 +355,57 @@ end
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+#Verify
+
+
+
+bot.command(:verify) do |event|
+
+@verify = Hash.new
+
+break unless event.user.role?(728054774049800264) || event.user.role?(697376461283393608)
+sleep(2)
+
+event.channel.send_embed do |embed|
+      embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://cdn.discordapp.com/attachments/490697349006622720/726349318818234428/gif_verify.gif')
+      embed.colour = 0,0,0
+
+
+end
+
+verify = event.channel.send_embed do |embed|
+			embed.description = "react with <a:bg2:720558287942320248> full access to the server"
+      embed.colour = 0, 0, 0
+
+
+end
+sleep(2)
+verify.react("a:bg2:720558287942320248")
+
+
+
+@verify["VERIFY_ID"] = verify.id
+
+
+
+result = settings.merge(@verify)
+File.write("settings.json", result.to_json)
+json = File.read('settings.json')
+settings = JSON.parse(json)
+
+return nil
+
+
+
+end
+
+
+
+
+
+
+#---------------------------------------------------------------------------------------------------------------------------------
 #REDS
 
 bot.reaction_add(emoji: 725212995130753045) do |event|
@@ -802,6 +853,22 @@ bot.reaction_remove(emoji: 725215542193029200) do |event|
 	end
 end
 
+#VERIFY
+
+bot.reaction_add(emoji: 720558287942320248) do |event|
+	if event.message.id == settings['VERIFY_ID']
+		sleep(2)
+		event.user.add_role(723751350076440578)
+	end
+end
+
+bot.reaction_remove(emoji: 720558287942320248) do |event|
+	if event.message.id == settings['VERIFY_ID']
+		sleep(2)
+		event.user.remove_role(723751350076440578)
+	end
+end
+
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 bot.command(:info) do |event|
@@ -924,16 +991,7 @@ end
 
 
 
-bot.command(:verify) do |event|
 
-event.channel.send_embed do |embed|
-	      embed.colour = 0, 0, 0
-				embed.description = ""
-
-
-	end
-
-end
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
