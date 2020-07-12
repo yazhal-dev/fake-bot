@@ -1107,7 +1107,7 @@ end
 sleep(2)
 event.channel.send_embed do |embed|
       embed.colour = 247,60,231
-			embed.description = "**boosters**\n<a:nitrobooster:715856082328879164> have access to private voice channels\n<a:nitrobooster:715856082328879164> fully customizable role (dm admin)"
+			embed.description = "**boosters**\n<a:nitrobooster:715856082328879164> access to private voice channels\n<a:nitrobooster:715856082328879164> access to <#728060567285399675><a:nitrobooster:715856082328879164> fully customizable role (dm admin)"
 
 
 end
