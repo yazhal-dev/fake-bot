@@ -281,7 +281,7 @@ black.react("691881069401866310:725213713845714964")
 @messages["BLACK_ID"] = black.id
 
 event.channel.send_embed do |embed|
-  embed.description = "refrain from using more than one role"
+  embed.description = "refrain from picking more than one role"
 
 end
 
@@ -315,14 +315,28 @@ welcome = event.channel.send_embed do |embed|
 end
 sleep(2)
 welcome.react("a:ab1:725213753905250444")
-
-
-
 @pings["WELCOME_ID"] = welcome.id
+
+
+
+sleep(2)
+alert = event.channel.send_embed do |embed|
+			embed.description = "**alerts**\nreact with <a:ab2:728082432338821200> to get pinged when we post important announcements (highly recommended)"
+      embed.colour = 138, 136, 136
+
+
+end
+sleep(2)
+alert.react("a:ab2:728082432338821200")
+@pings["ALERT_ID"] = alert.id
+
+
+
+
 sleep(2)
 chat = event.channel.send_embed do |embed|
 			embed.description = "**chat revive**\nreact with <a:ab2:725213767217971202> to get pinged when the chat is\ndead"
-      embed.colour = 0xffffff
+      embed.colour = 255, 255, 255
 
 
 end
@@ -332,7 +346,7 @@ chat.react("a:ab2:725213767217971202")
 @pings["CHAT_ID"] = chat.id
 sleep(2)
 movie = event.channel.send_embed do |embed|
-			embed.description = "**movie night**\nreact with <a:ab3:725215542193029200> to get pinged whenever we\nstream movies"
+			embed.description = "**movie night**\nreact with <a:ab3:725215542193029200> to get pinged when we\nstream movies"
       embed.colour = 237, 5, 67
 
 
@@ -375,7 +389,7 @@ event.channel.send_embed do |embed|
 end
 
 verify = event.channel.send_embed do |embed|
-			embed.description = "react with <a:bg2:720558287942320248> full access to the server"
+			embed.description = "react with <a:bg2:720558287942320248> to gain full access to the server"
       embed.colour = 0, 0, 0
 
 
@@ -406,6 +420,91 @@ end
 
 
 #---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+bot.command(:exclusives) do |event|
+
+@exclusives = Hash.new
+
+break unless event.user.role?(728054774049800264) || event.user.role?(697376461283393608)
+sleep(2)
+
+event.channel.send_embed do |embed|
+      embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://cdn.discordapp.com/attachments/490697349006622720/731639105892646912/dior.jpg')
+      embed.colour = 0,0,0
+
+
+end
+
+sleep(2)
+
+exclusive = event.channel.send_embed do |embed|
+			embed.description = "<:ac4:731584688556081192>:<@&731585752957452341>\n<:ac5:731584721254875224>:<@&731586162401083532>\n<:ac6:731584735725355021>:<@&731586191211626508>\n<:ac7:731584748824166431>:<@&731586219670110248>\n<:ac8:731584762946519200>:<@&731586246039699467>\n<:ac9:731584778490347620>:<@&731586274598715410>"
+      embed.colour = 0, 0, 0
+
+
+end
+
+sleep(2)
+
+exclusive.react("ac4:731584688556081192")
+sleep(2)
+exclusive.react("ac5:731584721254875224")
+sleep(2)
+exclusive.react("ac6:731584735725355021")
+sleep(2)
+exclusive.react("ac7:731584748824166431")
+sleep(2)
+exclusive.react("ac8:731584762946519200")
+sleep(2)
+exclusive.react("ac9:731584778490347620")
+sleep(2)
+
+event.channel.send_embed do |embed|
+			embed.description = "perks get removed once you stop boosting"
+      embed.colour = 0, 0, 0
+
+
+end
+
+sleep(2)
+
+
+
+
+
+@exclusives["EXCLUSIVE_ID"] = exclusive.id
+
+
+
+result = settings.merge(@exclusives)
+File.write("settings.json", result.to_json)
+json = File.read('settings.json')
+settings = JSON.parse(json)
+
+return nil
+
+
+
+end
+
+
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 #REDS
 
 bot.reaction_add(emoji: 725212995130753045) do |event|
@@ -819,6 +918,24 @@ bot.reaction_remove(emoji: 725213753905250444) do |event|
 	end
 end
 
+#ALERTS
+
+bot.reaction_add(emoji: 728082432338821200) do |event|
+	if event.message.id == settings['ALERT_ID']
+		sleep(2)
+		event.user.add_role(731555256919392297)
+	end
+end
+
+bot.reaction_remove(emoji: 728082432338821200) do |event|
+	if event.message.id == settings['ALERT_ID']
+		sleep(2)
+		event.user.remove_role(731555256919392297)
+	end
+end
+
+
+
 
 #CHAT
 
@@ -859,6 +976,7 @@ bot.reaction_add(emoji: 720558287942320248) do |event|
 	if event.message.id == settings['VERIFY_ID']
 		sleep(2)
 		event.user.remove_role(723751350076440578)
+		event.user.add_role(715274739018498109)
 	end
 end
 
@@ -866,8 +984,99 @@ bot.reaction_remove(emoji: 720558287942320248) do |event|
 	if event.message.id == settings['VERIFY_ID']
 		sleep(2)
 		event.user.add_role(723751350076440578)
+		event.user.remove_role(715274739018498109)
 	end
 end
+
+
+#EXCLUSIVES
+
+
+bot.reaction_add(emoji: 731584688556081192) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.add_role(731585752957452341)
+	end
+end
+
+bot.reaction_remove(emoji: 731584688556081192) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.remove_role(731585752957452341)
+	end
+end
+
+bot.reaction_add(emoji: 731584721254875224) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.add_role(731586162401083532)
+	end
+end
+
+bot.reaction_remove(emoji: 731584721254875224) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.remove_role(731586162401083532)
+	end
+end
+
+bot.reaction_add(emoji: 731584735725355021) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.add_role(731586191211626508)
+	end
+end
+
+bot.reaction_remove(emoji: 731584735725355021) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.remove_role(731586191211626508)
+	end
+end
+
+bot.reaction_add(emoji: 731584748824166431) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.add_role(731586219670110248)
+	end
+end
+
+bot.reaction_remove(emoji: 731584748824166431) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.remove_role(731586219670110248)
+	end
+end
+
+bot.reaction_add(emoji: 731584762946519200) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.add_role(731586246039699467)
+	end
+end
+
+bot.reaction_remove(emoji: 731584762946519200) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.remove_role(731586246039699467)
+	end
+end
+
+bot.reaction_add(emoji: 731584778490347620) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.add_role(731586274598715410)
+	end
+end
+
+bot.reaction_remove(emoji: 731584778490347620) do |event|
+	if event.message.id == settings['EXCLUSIVE_ID']
+		sleep(2)
+		event.user.remove_role(731586274598715410)
+	end
+end
+
+
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -878,6 +1087,13 @@ sleep(2)
 event.channel.send_embed do |embed|
       embed.colour = 0, 0, 0
 			embed.description = "**rules**\n<:whiteline:723736118419521556> fake 0:69 thou shall not edate\n<:whiteline:723736118419521556> don't promote/advertise\n<:whiteline:723736118419521556> don't spam/excessively ping\n<:whiteline:723736118419521556> no IP grabbers, viruses, doxxing\n<:whiteline:723736118419521556> use the right channel"
+
+
+end
+sleep(2)
+event.channel.send_embed do |embed|
+      embed.colour = 0, 0, 0
+			embed.description = "**levels**\n<:whiteline:723736118419521556><@&700784376509628417>\n<:whiteline:723736118419521556><@&700784074754752593>\n<:whiteline:723736118419521556><@&700783789085032560>\n<:whiteline:723736118419521556><@&700782264526700614>\n<:whiteline:723736118419521556><@&700781445169283163>\n<:whiteline:723736118419521556><@&700780577736884464>"
 
 
 end
