@@ -16,7 +16,7 @@ settings = JSON.parse(json)
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
+=begin
 bot.ready do |event|
 	users = bot.server(627448059671871508).members
 	loop do
@@ -51,7 +51,7 @@ bot.ready do |event|
 		end
 	end
 end
-
+=end
 
 
 
@@ -1228,7 +1228,14 @@ end
 
 end
 
+bot.command(:settings) do |event|
 
+break unless event.user.id(344525671135182851)
+json = File.read('settings.json')
+settings = JSON.parse(json)
+puts settings
+
+end
 
 
 
