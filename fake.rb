@@ -1233,7 +1233,7 @@ bot.command(:settings) do |event|
 break unless event.user.id == 344525671135182851
 json = File.read('settings.json')
 settings = JSON.parse(json)
-puts settings
+event.respond settings
 
 end
 
