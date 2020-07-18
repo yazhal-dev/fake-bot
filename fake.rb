@@ -1233,7 +1233,7 @@ bot.command(:settings) do |event|
 
 json = File.read('settings.json')
 settings = JSON.parse(json)
-event.respond settings
+event.respond settings.to_json
 
 end
 
