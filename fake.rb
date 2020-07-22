@@ -1,7 +1,7 @@
 require 'discordrb'
 require 'json'
 
-bot = Discordrb::Commands::CommandBot.new token: "#{ENV['TOKEN']}", prefix: '!'
+bot = Discordrb::Commands::CommandBot.new token: "NzI0Njc0MDQ1NjM5MDAwMTE0.XxOidQ.ok2qGKwlWxbpNWvpFb_3xLZytKk", prefix: '!'
 
 
 
@@ -16,7 +16,7 @@ settings = JSON.parse(json)
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-=begin
+
 bot.ready do |event|
 	users = bot.server(627448059671871508).members
 	loop do
@@ -51,7 +51,7 @@ bot.ready do |event|
 		end
 	end
 end
-=end
+
 
 
 
@@ -1086,7 +1086,7 @@ break unless event.user.role?(728054774049800264) || event.user.role?(6973764612
 sleep(2)
 event.channel.send_embed do |embed|
       embed.colour = 0, 0, 0
-			embed.description = "**rules**\n<:whiteline:723736118419521556> fake 0:69 thou shall not edate\n<:whiteline:723736118419521556> don't promote/advertise\n<:whiteline:723736118419521556> don't spam/excessively ping\n<:whiteline:723736118419521556> no IP grabbers, viruses, doxxing\n<:whiteline:723736118419521556> use the right channel"
+			embed.description = "**rules**\n<:whiteline:723736118419521556> fake 0:69 thou shall not edate\n<:whiteline:723736118419521556> don't promote/advertise\n<:whiteline:723736118419521556> don't spam/excessively ping\n<:whiteline:723736118419521556> no IP grabbers, viruses, doxxing\n<:whiteline:723736118419521556> use the right channel\n<:whiteline:723736118419521556> follow discord tos"
 
 
 end
